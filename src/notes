@@ -1,0 +1,26 @@
+-colors
+
+X-create function to check if word submitted by guesser, matches word of the round
+
+X-create a function to increment the round when the word has been guessed
+
+X-create a function that changed the current player from guesser to drawer, when they guess right
+
+X-create a function that ends the round when the word is guessed right
+    -changes the round progress from true => false
+
+X- create function to increment player points
+
+X-when a guesser guesses right they are redirected to the drawer view
+
+X-logic for when a guess is wrong
+
+-validations
+    
+-display "wrong word" message
+
+-error messages
+
+-work on getting socket.io working for real time display(action cable)
+    -if we get this working we don't need submit button for canvas
+    -clear canvas button working
