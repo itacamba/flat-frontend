@@ -1,4 +1,5 @@
 function displayGuesser(user_info){
+    // debugger
     console.log("I hit guesser.js/ display guesser")
 
     let doc = document.getElementById("content")
@@ -13,6 +14,9 @@ function displayGuesser(user_info){
     const plArr = user_info.included.filter(e => e.type === "player").concat(loggedInUser)
     const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
+
+    // current painting id
+    const paintingId = user_info.included[2].id
 
     // function to find the player round with the drawer.
     function findPrPlayerId(playerRound){
@@ -56,17 +60,42 @@ function displayGuesser(user_info){
     // rightMenuDiv.append(pointsDiv, guessesMadeDiv)
 
 
-    // div for canvas
-    let canvasDiv = document.createElement("div")
-    canvasDiv.id = "canvas-container"
-    // canvasDiv.addEventListener('load', canvasFunc)
+    // ***********************************************************
+    // showing an img tag for the guesser
+    let painting = document.createElement("img")
+    painting.id = "painting"
 
-    //     //the canvas
-    //     let canvas = document.createElement("convas")
-    //     canvas.id = "canvas"
- 
-    // // append canvas to div
-    // canvasDiv.append(canvas)
+
+    // // div for canvas
+    // let canvasDiv = document.createElement("div")
+    // canvasDiv.id = "canvas-container"
+
+    // easel = new Easel({
+    //     container: canvasDiv,
+    //     width: 200,
+    //     height: 200,
+    //     fillColor: '#ddd'
+    //   })
+      
+
+    adapter = new Adapter("http://localhost:3000/")
+
+    setInterval(() => {
+        adapter
+          .getData(paintingId)
+          .then(res => res.json())
+          .then(data => {painting.src = data.url})
+      }, 5000)
+    
+    //   // the sending of data to the DB
+    //   setInterval(() => {
+    //     adapter
+    //       .sendData(paintingId, easel.data())
+    //   }, 200)
+
+
+
+// ***********************************************************
     
     
     //div for form for guess
@@ -90,7 +119,7 @@ function displayGuesser(user_info){
     //append form to div
     guessingFormDiv.append(form)
     //append everything to index.html
-    doc.append(canvasHeaderDiv, rightMenuDiv, canvasDiv, guessingFormDiv)
+    doc.append(canvasHeaderDiv, rightMenuDiv, painting, guessingFormDiv)
 
-    displayCanvasFunc(user_info.data.attributes.role)
+    // displayCanvasFunc(user_info.data.attributes.role)
 }
