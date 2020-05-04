@@ -42,56 +42,34 @@ function displayGuesser(user_info){
 
     // div for right menu
     let rightMenuDiv = document.createElement("div")
-        // div for points
-    //     let pointsDiv = document.createElement("div")
-    //     pointsDiv.innerText = `Points: ${loggedInUser.attributes.points}`
-    //     // div for guesses
-    //     let guessesMadeDiv = document.createElement("div")
-    //     let guessesUl = document.createElement("ul")
-    //     let guessLi = document.createElement("li")
-    //     guessLi.innerText = "Chine guessed: dog"
-    //     let guessLi1 = document.createElement("li")
-    //     guessLi1.innerText = "Ann guessed: pokemon"
-    //     let guessLi2 = document.createElement("li")
-    //     guessLi2.innerText = "Paul guessed: cat"
-    
-    //     guessesUl.append(guessLi, guessLi1, guessLi2)
-    //     guessesMadeDiv.append(guessesUl)
-    // rightMenuDiv.append(pointsDiv, guessesMadeDiv)
+        //div for points
+        let pointsDiv = document.createElement("div")
+        pointsDiv.innerText = `Points: ${loggedInUser.attributes.points}`
+        // div for guesses
+        let guessesMadeDiv = document.createElement("div")
+        let guessesUl = document.createElement("ul")
+        guessesUl.id = "guesses-ul"
+        
+        guessesMadeDiv.append(guessesUl)
+    rightMenuDiv.append(pointsDiv, guessesMadeDiv)
 
 
     // ***********************************************************
     // showing an img tag for the guesser
     let painting = document.createElement("img")
     painting.id = "painting"
-
-
-    // // div for canvas
-    // let canvasDiv = document.createElement("div")
-    // canvasDiv.id = "canvas-container"
-
-    // easel = new Easel({
-    //     container: canvasDiv,
-    //     width: 200,
-    //     height: 200,
-    //     fillColor: '#ddd'
-    //   })
       
 
     adapter = new Adapter("http://localhost:3000/")
 
-    setInterval(() => {
-        adapter
-          .getData(paintingId)
-          .then(res => res.json())
-          .then(data => {painting.src = data.url})
-      }, 5000)
-    
-    //   // the sending of data to the DB
-    //   setInterval(() => {
+    // setInterval(() => {
     //     adapter
-    //       .sendData(paintingId, easel.data())
-    //   }, 200)
+    //       .getData(paintingId)
+    //       .then(res => res.json())
+    //       .then(data => {painting.src = data.url})
+    //   }, 100)
+    
+    
 
 
 
@@ -107,6 +85,8 @@ function displayGuesser(user_info){
         form.dataset.word = word["name"]
         form.dataset.roundId = roundInfo["id"]
         form.dataset.playerRound = user_info.data.id
+        form.dataset.guesserName = loggedInUser.attributes.name
+
 
         // input
         let input = document.createElement("input")
@@ -120,6 +100,6 @@ function displayGuesser(user_info){
     guessingFormDiv.append(form)
     //append everything to index.html
     doc.append(canvasHeaderDiv, rightMenuDiv, painting, guessingFormDiv)
-
-    // displayCanvasFunc(user_info.data.attributes.role)
+    
+    displayGuesses(user_info)
 }
