@@ -43,7 +43,7 @@ function wordCheck(e){
     // IF guess is right 
     if(guess === wordOfRound){  
         
-        
+        console.log("word is right")
             const obj = {
                 player_id: player_id,
                 player_round_id: playerRoundId 

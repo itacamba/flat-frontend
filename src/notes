@@ -15,15 +15,23 @@ X-when a guesser guesses right they are redirected to the drawer view
 
 X-logic for when a guess is wrong
 
--validations
-    
--display "wrong word" message
 
--error messages
 
 X-work on getting socket.io working for real time display(action cable)
-    -if we get this working we don't need submit button for canvas
-    -clear canvas button working
+    X-if we get this working we don't need submit button for canvas
+    X-clear canvas button working
 
+- change views for players, when a round is finished
+- display "wrong word" message
+- make sure all forms are being cleared after submitting
+- clear messages array when round ends.
 
+- error messages
+- show player's points 
 - validations for when a user does not properly fillout the sign in form
+- styling
+
+
+
+
+*****create a constant loop to check the player_round status. If the status changes, run function to proper screen view.

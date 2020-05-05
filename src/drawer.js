@@ -6,12 +6,13 @@ function displayDrawer(user_info){
     }
 
 
+
     //div parent for word
      //logged-in user //user_info.included[0].attributes.name
      //word: 
     const prArr =  user_info.included.filter(e => e.type === "player_round")
     const plArr = user_info.included.filter(e => e.type === "player")
-    const roundInfo = user_info.included[1].attributes
+    const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
 
      let canvasHeaderDiv = document.createElement("div")
@@ -41,7 +42,7 @@ function displayDrawer(user_info){
             // dropdown
             // round
             const roundH2 = document.createElement("h2")
-            roundH2.innerText = `Round: ${roundInfo.number}` 
+            roundH2.innerText = `Round: ${roundInfo.attributes.number}` 
             
         topicRoundDiv.append(topicH2, roundH2)
 
@@ -91,18 +92,18 @@ function displayDrawer(user_info){
 
     adapter = new Adapter("http://localhost:3000/")
     
-      // the sending of data to the DB
-    //   setInterval(() => {
-    //     adapter
-    //       .sendData(paintingId, easel.data())
-    //       fetch("http://localhost:3000/" + `paintings/${paintingId}`, {
-    //         method: "PATCH",
-    //         headers: {
-    //           "Content-Type": "application/json"
-    //         },
-    //         body: JSON.stringify({data: easel.data()})
-    //       })
-    //   }, 100)
+    //   the sending of data to the DB
+      setInterval(() => {
+        adapter
+          .sendData(paintingId, easel.data())
+          fetch("http://localhost:3000/" + `paintings/${paintingId}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({data: easel.data()})
+          })
+      }, 100)
 
 
 
