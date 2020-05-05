@@ -16,12 +16,15 @@ function wordCheck(e){
 
     const guesserName = e.currentTarget.dataset.guesserName
 
+     
     //  fetch PATCH to DISPLAY ON DOM
-     fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ guess: `${guesserName}: ${guess}`})
-        })
+//**********************************************
+     
+        
+//         .then(resp => resp.json()).then(data => {
+// debugger
+//             console.log(`/rounds/:id/guesses => returns ${data}`)
+//         })
         // .then(resp => resp.json())
         // .then(pRoundObj => { 
         //     const lastGuess = pRoundObj.guesses.slice(-1)[0]
@@ -50,23 +53,30 @@ function wordCheck(e){
                 
             }
     // we do a fetch patch to roundsController #end_round action 
+   
             fetch(`http://localhost:3000/rounds/${roundId}/endround`,{
                 method: "PATCH",
                 headers: {
-                    "Content-Type": "application/json",
-                    "Accept": "application/json"
+                    "Content-Type": "application/json"
                 },
                 body: JSON.stringify(obj)
             }).then(resp => resp.json())
             .then(playerRoundInfo => {
-                displayDrawer(playerRoundInfo)
+debugger
+                console.log(playerRoundInfo)
+                // displayDrawer(playerRoundInfo)
 
             })
 
 
     } else if (guess != wordOfRound) {
-        e.target.reset()
+       
         console.log("Word is wrong")
+        fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
+        method: "PATCH",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({ guess: `${guesserName}: ${guess}`})
+        }).then( e.target.reset())
         // display a nice message on the DOM
         // debugger
         // displayGuesser()

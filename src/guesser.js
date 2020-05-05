@@ -10,8 +10,8 @@ function displayGuesser(user_info){
     //div parent for drawer name, and topic
     const loggedInUser = user_info.included[0]
     // const loggedInUser = user_info.included.filter(e => e.type === "round")
-    const prArr =  user_info.included.filter(e => e.type === "player_round")
-    const plArr = user_info.included.filter(e => e.type === "player").concat(loggedInUser)
+    const prArr =  user_info.included.filter(e => (e.type === "player_round"))
+    const plArr = user_info.included.filter(e => (e.type === "player")).concat(loggedInUser)
     const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
 
@@ -67,8 +67,9 @@ function displayGuesser(user_info){
         adapter
           .getData(paintingId)
           .then(res => res.json())
-          .then(data => {painting.src = data.url})
-      }, 100)
+          .then(data => {
+              painting.src = data.url})
+      }, 5000)
 
 
 

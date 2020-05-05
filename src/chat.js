@@ -19,9 +19,6 @@ rightMenuDiv.append(topicRoundDiv, guessesMadeDiv)
 }
 
 
-function chatGuesses(player) {
-
-}
 
 
 //user hits submit(event listener)

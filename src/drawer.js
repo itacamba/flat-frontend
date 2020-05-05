@@ -10,11 +10,12 @@ function displayDrawer(user_info){
     //div parent for word
      //logged-in user //user_info.included[0].attributes.name
      //word: 
-    const prArr =  user_info.included.filter(e => e.type === "player_round")
-    const plArr = user_info.included.filter(e => e.type === "player")
+    const prArr =  user_info.included.filter(e => (e.type === "player_round"))
+    const plArr = user_info.included.filter(e => (e.type === "player"))
     const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
-
+    
+    
      let canvasHeaderDiv = document.createElement("div")
         // div for word
         let wordH1 = document.createElement("h1") 
@@ -95,6 +96,7 @@ function displayDrawer(user_info){
     //   the sending of data to the DB
       setInterval(() => {
         adapter
+        
           .sendData(paintingId, easel.data())
           fetch("http://localhost:3000/" + `paintings/${paintingId}`, {
             method: "PATCH",
@@ -103,7 +105,7 @@ function displayDrawer(user_info){
             },
             body: JSON.stringify({data: easel.data()})
           })
-      }, 100)
+      }, 5000)
 
 
 
