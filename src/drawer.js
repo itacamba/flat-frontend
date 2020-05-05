@@ -24,7 +24,7 @@ function displayDrawer(user_info){
         gameH1.innerText = `Game ID: ${user_info.included[1].attributes.game_id}`
         // append word once picked
     // append h1 to canvasHEaderDiv
-    canvasHeaderDiv.append(wordH1)
+    canvasHeaderDiv.append(wordH1, gameH1)
     
 
     // current painting id
@@ -83,8 +83,8 @@ function displayDrawer(user_info){
 
     easel = new Easel({
         container: canvasDiv,
-        width: 200,
-        height: 200,
+        width: 800,
+        height: 500,
         fillColor: '#ddd'
       })
 
@@ -139,7 +139,8 @@ function displayDrawer(user_info){
         let clearCanvasBtn = document.createElement("button")
         clearCanvasBtn.innerText = "Clear Canvas"
         clearCanvasBtn.addEventListener("click", () =>{
-            ctx.clearRect(0, 0, canvas.width, canvas.height)
+            easel.clear()
+            // ctx.clearRect(0, 0, canvas.width, canvas.height)
         })
         
         // div for submit button
@@ -156,5 +157,5 @@ function displayDrawer(user_info){
     // displayCanvasFunc(user_info.data.attributes.role)
     // guessesDisplay()
 
-    displayGuesses(user_info)
+    displayGuesses(roundInfo)
 }

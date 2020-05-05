@@ -11,31 +11,33 @@ function wordCheck(e){
     const wordOfRound =  e.currentTarget.dataset.word.toLowerCase()
     
     const roundId = e.currentTarget.dataset.roundId
+
     const playerRoundId = e.currentTarget.dataset.playerRound
 
     const guesserName = e.currentTarget.dataset.guesserName
 
-     // fetch PATCH to DISPLAY ON DOM
-     fetch(`http://localhost:3000/player_rounds/${playerRoundId}/guesses`, {
+    //  fetch PATCH to DISPLAY ON DOM
+     fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
         method: "PATCH",
         headers: {"Content-Type": "application/json"},
         body: JSON.stringify({ guess: `${guesserName}: ${guess}`})
-        }).then(resp => resp.json())
-        .then(pRoundObj => { 
-            const lastGuess = pRoundObj.guesses.slice(-1)[0]
-            displayGuess(lastGuess)
         })
+        // .then(resp => resp.json())
+        // .then(pRoundObj => { 
+        //     const lastGuess = pRoundObj.guesses.slice(-1)[0]
+        //     displayGuess(lastGuess)
+        // })
 
-        function displayGuess(lastGuess) {
-            console.log(lastGuess)
-            // target parent
-            const guessesDiv = document.getElementById("guesses-ul")
-            const guess = document.createElement("li")
-            guess.innerText = lastGuess
-            guessesDiv.append(guess)
-            // create child
-            // append 
-        }
+        // function displayGuess(lastGuess) {
+        //     console.log(lastGuess)
+        //     // target parent
+        //     const guessesDiv = document.getElementById("guesses-ul")
+        //     const guess = document.createElement("li")
+        //     guess.innerText = lastGuess
+        //     guessesDiv.append(guess)
+        //     // create child
+        //     // append 
+        // }
 
     
     // IF guess is right 

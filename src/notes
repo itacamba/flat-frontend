@@ -21,6 +21,9 @@ X-logic for when a guess is wrong
 
 -error messages
 
--work on getting socket.io working for real time display(action cable)
+X-work on getting socket.io working for real time display(action cable)
     -if we get this working we don't need submit button for canvas
     -clear canvas button working
+
+
+- validations for when a user does not properly fillout the sign in form

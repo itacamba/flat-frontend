@@ -19,4 +19,10 @@ class Adapter {
   getData(imageId) {
     return fetch(this.baseURL + `paintings/${imageId}`)
   }
+
+  getGuesses(roundId){
+    return fetch(this.baseURL + `rounds/${roundId}`)
+  }
+
+
 }
