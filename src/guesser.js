@@ -36,7 +36,7 @@ function displayGuesser(user_info){
         drawerName.innerText = `Drawer is: ${drawerInstance.attributes.name}`
         // div for topic
         let topic = document.createElement("div")
-        topic.innerText = `topic: ${word.topic}`
+        topic.innerText = `Topic: ${word.topic}`
         
     // append to canvasHeaderDiv
     canvasHeaderDiv.append(drawerName, topic)
@@ -76,19 +76,18 @@ function displayGuesser(user_info){
 
 
 
-    //   setInterval(() => {
+      setInterval(() => {
           
-    //     fetch("http://localhost:3000/" + `player_rounds/${playerRoundId.id}`)
-    //      .then(resp => resp.json())
-    //      .then(playerRound => {
-    //          if (playerRound.data.attributes.role === "drawer"){
-
-    //              displayDrawer(playerRound)
-    //          }
-    //      })
+        fetch("http://localhost:3000/" + `rounds/${roundInfo.id}/${loggedInUser.id}`)
+         .then(resp => resp.json())
+         .then(round => {
+// debugger
+            topic.innerText = `Topic: ${round[1].word.topic}`
+            pointsDiv.innerText = `Points: ${round[0].points}`
+         })
         
       
-    // }, 5000)
+    }, 5000)
 
 // ***********************************************************
     

@@ -8,6 +8,7 @@ function wordCheck(e){
     const player_id = e.currentTarget.dataset.guesserId
    
     const guess = e.currentTarget.firstElementChild.value.toLowerCase() // this is a word
+    
     const wordOfRound =  e.currentTarget.dataset.word.toLowerCase()
     
     const roundId = e.currentTarget.dataset.roundId
@@ -17,6 +18,10 @@ function wordCheck(e){
     const guesserName = e.currentTarget.dataset.guesserName
 
      
+    
+
+
+
     //  fetch PATCH to DISPLAY ON DOM
 //**********************************************
      
@@ -42,48 +47,53 @@ function wordCheck(e){
         //     // append 
         // }
 
-    
-    // IF guess is right 
-    if(guess === wordOfRound){  
-        
-        console.log("word is right")
-            const obj = {
-                player_id: player_id,
-                player_round_id: playerRoundId 
-                
-            }
-            
-    // we do a fetch patch to roundsController #end_round action 
-   
-            fetch(`http://localhost:3000/rounds/${roundId}/endround`,{
-                method: "PATCH",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(obj)
-            }).then(resp => resp.json())
-            .then(playerRoundInfo => {
-// debugger
-                console.log(playerRoundInfo)
-                // displayDrawer(playerRoundInfo)
-                playerStatus(playerRoundInfo)
-
-            })
-
-
-    } else if (guess != wordOfRound) {
        
-        console.log("Word is wrong")
-        fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
-        method: "PATCH",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({ guess: `${guesserName}: ${guess}`})
-        }).then( e.target.reset())
-        // display a nice message on the DOM
+        fetch(`http://localhost:3000/rounds/${roundId}`)
+            .then(resp => resp.json())
+            .then(word => checkGuess(word, guess))
+        
+     function checkGuess(word, guess){
+            // IF guess is right 
+            if(guess === wordOfRound){  
+                
+                console.log("word is right")
+                    const obj = {
+                        player_id: player_id,
+                        player_round_id: playerRoundId 
+                        
+                    }
+                    
+            // we do a fetch patch to roundsController #end_round action 
+        
+                    fetch(`http://localhost:3000/rounds/${roundId}/endround`,{
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify(obj)
+                    }).then(resp => resp.json())
+                    .then(playerRoundInfo => {
         // debugger
-        // displayGuesser()
-    }
+                        console.log(playerRoundInfo)
+                        // displayDrawer(playerRoundInfo)
+                        displayGuesser(playerRoundInfo)
 
+                    })
+
+
+            } else if (guess != wordOfRound) {
+            
+                console.log("Word is wrong")
+                fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
+                method: "PATCH",
+                headers: {"Content-Type": "application/json"},
+                body: JSON.stringify({ guess: `${guesserName}: ${guess}`})
+                }).then( e.target.reset())
+                // display a nice message on the DOM
+                // debugger
+                // displayGuesser()
+            }
+     }
 }
 
 

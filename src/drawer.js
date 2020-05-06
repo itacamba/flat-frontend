@@ -22,8 +22,10 @@ function displayDrawer(user_info){
      let canvasHeaderDiv = document.createElement("div")
         // div for word
         let wordH1 = document.createElement("h1") 
+        wordH1.id = "word-id"
         //TODO Make an if/else statement to show either blank when no topic is chosen, or a word, when topic is chosen. 
         wordH1.innerText = `Word: ${word.name}`
+        
         let gameH1 = document.createElement("h1") 
         //TODO Make an if/else statement to show either blank when no topic is chosen, or a word, when topic is chosen. 
         gameH1.innerText = `Game ID: ${user_info.included[1].attributes.game_id}`
@@ -42,13 +44,18 @@ function displayDrawer(user_info){
         let topicRoundDiv = document.createElement("div")
             // h2 for topic title
             let topicH2 =document.createElement("h2")
+            topicH2.id = "word-topic"
             topicH2.innerText = ` Topic: ${word.topic}`
-            // dropdown
             // round
             const roundH2 = document.createElement("h2")
             roundH2.innerText = `Round: ${roundInfo.attributes.number}` 
+            // button random word
+            const randomBtn = document.createElement("button")
+            randomBtn.dataset.round = roundInfo.id
+            randomBtn.innerText = "Generate Word"
+            randomBtn.addEventListener("click", getRandomWord)
             
-        topicRoundDiv.append(topicH2, roundH2)
+        topicRoundDiv.append(topicH2, roundH2, randomBtn)
 
         let guessesMadeDiv = document.createElement("div")
             let guessesUl = document.createElement("ul")
@@ -125,19 +132,7 @@ function displayDrawer(user_info){
     
     // div for footer canvas
     let footerCanvas = document.createElement("div")
-        // div for colors
-        let colorsDiv = document.createElement("div")
-        let ulColors = document.createElement("ul")
-        let color1 = document.createElement("li")
-        
-        let color2 = document.createElement("li")
 
-        let color3 = document.createElement("li") 
-
-        // append colors to ul
-        ulColors.append(color1, color2, color3)
-        // apend ul to div
-        colorsDiv.append(ulColors)
         
         // div for submit button
         let clearCanvasBtn = document.createElement("button")
@@ -152,7 +147,7 @@ function displayDrawer(user_info){
         // submitCanvasBtn.innerText = "Submit Drawing"
         
     // append colors and button to footerCanvas 
-    footerCanvas.append(colorsDiv, clearCanvasBtn)
+    footerCanvas.append(clearCanvasBtn)
 
     //append everything to index.html
     

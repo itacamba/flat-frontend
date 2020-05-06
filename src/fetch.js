@@ -93,14 +93,24 @@ function fetchWord(wordId){
     .then(word => renderWord(word))
 
 }
-function renderWord(word){
-    console.log(word)
-    return word.name
+function getRandomWord(event){
+    const roundId = event.target.dataset.round
+    fetch(ROUNDS_URL +`/${roundId}/word`)
+    .then(resp => resp.json())
+    .then(round => renderWord(round))
+}
+
+function renderWord(round){
+debugger
+    // const randWord = wordsArr[Math.floor(Math.random()*wordsArr.length)];
+    const h1 = document.getElementById("word-id")
+    h1.innerText = `Word: ${round.word.name}`
+    const h2 = document.getElementById("word-topic")
+    h2.innerText = `Topic: ${round.word.topic}`
 }
 
 
-
-
+// var randomItem = myArray[Math.floor(Math.random()*myArray.length)];
 
 // function updateRound(id){
 
