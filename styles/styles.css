@@ -1,7 +1,230 @@
-/* html, body {
-    height: 100%;
-} */
+
+*{
+    background-color: #36a1d4;
+}
 #canvas {
     background: #f0f0f0;
     border-radius: 5px;
+}
+
+
+.navbar-brand{ 
+    color: #0D3B66; 
+    font-size: 38px !important; 
+    font-family: 'Ultra', serif;
+    letter-spacing: 1px;
+} 
+.navbar-brand:hover{
+    color: #04133E;
+}
+.nav-link{
+    color: #ffffff;
+    font-family: 'Slabo 13px', serif;
+}
+/* BUTTONS HOME */
+
+.buttons-container{
+    
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    padding-top: 100px;
+}
+ 
+.buttons-container button{
+  
+    display: block;
+    margin: 0 auto;
+    width: 300px;
+    height: 50px;
+    margin-bottom: 30px;
+    background-color: #F5BB00;
+    border:none;
+    color: #ffffff;
+    outline: none;
+}
+#forms{
+    height: 100%;
+    text-align: center;
+    border-radius: 4px;
+    margin-top: -70px;
+}
+#forms input[type="text"] {
+   background-color: #ffffff;
+   padding: 7px;
+   box-sizing: border-box;
+   border: none;
+   border-radius: 4px;
+   margin-right: 5px;
+}
+#forms input[type=text]:focus {
+    background-color: lightblue;
+}
+
+
+#forms button {
+
+    width: 180px;
+    border: none;
+    background-color: #0D3B66;
+    border-radius: 4px;
+    margin-top: 30px;
+    color: #ffffff;
+    
+}
+#forms button:hover{
+    background-color: #04133E;
+}
+/* Blue Button */
+.blue-btn{
+    width: 180px;
+    height: 40px;
+    border: none;
+    background-color: #0D3B66;
+    border-radius: 4px;
+    margin-top: 30px;
+    color: #ffffff;
+}
+.blue-btn:hover{
+    background-color: #04133E;
+}
+.yellow-btn{
+    width: 180px;
+    height: 40px;
+    border: none;
+    background-color: #F5BB00;
+    border-radius: 4px;
+    margin-top: 30px;
+    color: #04133E;
+}
+.yellow-btn:hover{
+    background-color: #d22d16;
+}
+#guessing-form-div{
+    display: block;
+    text-align: center;
+}
+#guesser-form {
+   display: inline-block;
+}
+#guesser-form input[type="text"]{
+    background-color: #ffffff;
+    padding: 7px;
+    box-sizing: border-box;
+    border: none;
+    border-radius: 4px;
+    margin-right: 5px;
+    width: 500px;
+}
+#guesser-form input[type=text]:focus {
+    background-color: lightblue;
+}
+/* CANVAS STYLING */
+
+#painting{
+    border: 7px solid #0D3B66;
+}
+
+
+/* END CANVAS STYLING */
+
+/* TOPIC, DRAWER, POINTS */
+#canvas-header-div{
+    display: block;
+    width: 814px;
+    background-color: #0D3B66;
+    height: 50px;
+    display: flex;
+    padding: 0 70px;
+}
+#topic-div{
+    background-color: #0D3B66;
+    line-height: 50px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    color:#dddddd;
+
+}
+#drawer-name{
+    
+    background-color: #0D3B66;
+    line-height: 50px;
+    width: 50%;
+    font-size: 25px;
+    font-weight: 800;
+    color:#dddddd;
+    letter-spacing: 1px;
+}
+/* TOPIC, DRAWER, POINTS */
+#content{
+padding: 25px 60px;
+}
+
+/* MESSAGES OR GUESSES AREA */
+
+#guesses-div{
+    background-color: #dddddd;
+    height: 400px;
+    padding: 7px 9px;
+}
+.guess-bk{
+    background-color: #dddddd;
+    font-weight: 500;
+    color: #0D3B66;
+    
+}
+/*POINTS  */
+#points-div{ 
+    width: 100%;
+    background-color: #F5BB00;
+    color:#0D3B66;
+    font-weight: 800;
+    font-size: 25px;
+    text-align: center;
+}
+
+
+/*********** DRAWER  ****************/
+/* #canvas-container{
+    border: 7px solid #0D3B66;
+} */
+
+#canvas-container canvas{
+    border: 7px solid #0D3B66;
+}
+#header-div {
+    display: block;
+    width: 814px;
+    background-color: #0D3B66;
+    height: 50px;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 70px;
+}
+#word-id{
+    background-color: #0D3B66;
+    line-height: 50px;
+    color: #dddddd;
+    font-size: 27px;
+}
+#game-id{
+    background-color: #0D3B66;
+    line-height: 50px;
+    color: #dddddd;
+    font-size: 27px;
+}
+#generate-btn{
+    background-color: #d22d16;
+    margin-top: 9px;
+}
+#generate-btn:hover{
+    background-color: #F5BB00;
+    color: #04133E
+}
+#clear-canvas-btn{
+ margin:0;
 }

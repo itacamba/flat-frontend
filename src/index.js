@@ -23,6 +23,7 @@ function handleNewGame(){
         createGameForm.id = "new-game-form"
         // input username
         const usernameInput = document.createElement("input")
+        usernameInput.type = "text"
         usernameInput.placeholder = "Username"
         usernameInput.id = "username-input"
         // submit button
@@ -48,10 +49,12 @@ function handleJoinGame(){
         enterGameForm.addEventListener("submit", joinGame)
             // input for username
             const usernameInput = document.createElement("input")
+            usernameInput.type = "text"
             usernameInput.id = "join-username-field"
             usernameInput.placeholder = "Username"
             // input for game ID
             const gameId = document.createElement("input")
+            gameId.type = "text"
             gameId.id = "get-game"
             gameId.placeholder = "Game ID"
             // submit 

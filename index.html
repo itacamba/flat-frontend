@@ -5,17 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="styles/styles.css"/>
-
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- Font family -->
+    <link href="https://fonts.googleapis.com/css2?family=Slabo+13px&family=Ultra&display=swap" rel="stylesheet">
 </head>
 <body>
-    <h1>Flationary</h1>
+
+<!--NAV BAR-->
+
+    <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="#">Flationary</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+            <ul class="navbar-nav mr-auto mt-2 mt-lg-0">
+            <li class="nav-item active">
+                <a class="nav-link" href="#">How to Play <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Technologies Used</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">About Creators</a>
+            </li>
+            
+            </ul>
+        </div>
+    </nav>
+
+
+<!--END NAVBAR-->
+
+    <!-- <h1>Flationary</h1> -->
     
     <div id="buttons_home">
-        <button id="create-game">Create New Game</button>
-        <button id="join-game">Join Game</button>
-
-        <div id="forms">
-            
+        <div class="buttons-container">
+            <button id="create-game" type="button" class="btn btn-danger">Create New Game</button>
+            <button id="join-game" type="button" class="btn btn-danger">Join Game</button>
+        </div>
+        
+        <div class="buttons-container">
+            <div id="forms">
+                
+            </div>
         </div>
     </div>
     

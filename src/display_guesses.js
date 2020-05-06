@@ -2,7 +2,7 @@
 
 function displayGuesses(roundInfo){
 adapter = new Adapter("http://localhost:3000/")
-let guessesUl = document.getElementById("guesses-ul")
+let guessesDiv = document.getElementById("guesses-div")
         
         setInterval(() => {
 //  debugger
@@ -11,12 +11,13 @@ let guessesUl = document.getElementById("guesses-ul")
             .then(data => { 
                 const prArr = data.guesses // returns arr of pr objects
                 if (prArr.length > 0 ){        
-                    guessesUl.innerHTML = ""
+                    guessesDiv.innerHTML = ""
                     prArr.forEach(  guess => {
                         // debugger
-                            const li = document.createElement("li")
-                            li.innerText = guess
-                            guessesUl.append(li)
+                            const div = document.createElement("div")
+                            div.classList.add("guess-bk")
+                            div.innerText = guess
+                            guessesDiv.append(div)
                         
                     })
                 }

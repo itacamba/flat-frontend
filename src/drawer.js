@@ -20,6 +20,7 @@ function displayDrawer(user_info){
     const playerRoundId = prArr.find(obj => obj.attributes['player_id'] == user_info.included[0].id)
     
      let canvasHeaderDiv = document.createElement("div")
+     canvasHeaderDiv.id = "header-div"
         // div for word
         let wordH1 = document.createElement("h1") 
         wordH1.id = "word-id"
@@ -27,11 +28,19 @@ function displayDrawer(user_info){
         wordH1.innerText = `Word: ${word.name}`
         
         let gameH1 = document.createElement("h1") 
+        gameH1.id = "game-id"
         //TODO Make an if/else statement to show either blank when no topic is chosen, or a word, when topic is chosen. 
         gameH1.innerText = `Game ID: ${user_info.included[1].attributes.game_id}`
+
+        const randomBtn = document.createElement("button")
+            randomBtn.id = "generate-btn"
+            randomBtn.dataset.round = roundInfo.id
+            randomBtn.innerText = "Generate Word"
+            randomBtn.classList.add("blue-btn") 
+            randomBtn.addEventListener("click", getRandomWord)
         // append word once picked
     // append h1 to canvasHEaderDiv
-    canvasHeaderDiv.append(wordH1, gameH1)
+    canvasHeaderDiv.append(gameH1, wordH1,randomBtn)
     
 
     // current painting id
@@ -40,6 +49,8 @@ function displayDrawer(user_info){
 
     // div for right menu
     let rightMenuDiv = document.createElement("div")
+    rightMenuDiv.id = 'right-div'
+    rightMenuDiv.classList.add('col-4')
         // div for dropdown
         let topicRoundDiv = document.createElement("div")
             // h2 for topic title
@@ -50,18 +61,14 @@ function displayDrawer(user_info){
             const roundH2 = document.createElement("h2")
             roundH2.innerText = `Round: ${roundInfo.attributes.number}` 
             // button random word
-            const randomBtn = document.createElement("button")
-            randomBtn.dataset.round = roundInfo.id
-            randomBtn.innerText = "Generate Word"
-            randomBtn.addEventListener("click", getRandomWord)
             
-        topicRoundDiv.append(topicH2, roundH2, randomBtn)
+            
+        topicRoundDiv.append(topicH2, roundH2)
 
         let guessesMadeDiv = document.createElement("div")
-            let guessesUl = document.createElement("ul")
-            guessesUl.id = "guesses-ul"
+            guessesMadeDiv.id = "guesses-div"
             
-        guessesMadeDiv.append(guessesUl)
+        // guessesMadeDiv.append(guessesUl)
     rightMenuDiv.append(topicRoundDiv, guessesMadeDiv)
 
       
@@ -72,6 +79,7 @@ function displayDrawer(user_info){
 
     // div for canvas
     let canvasDiv = document.createElement("div")
+    canvasDiv.classList.add("col-8")
     canvasDiv.id = "canvas-container"
 
     easel = new Easel({
@@ -99,7 +107,7 @@ function displayDrawer(user_info){
         //   })
           
         
-      }, 5000)
+      }, 200)
 
 
 
@@ -136,6 +144,8 @@ function displayDrawer(user_info){
         
         // div for submit button
         let clearCanvasBtn = document.createElement("button")
+        clearCanvasBtn.id = "clear-canvas-btn"
+        clearCanvasBtn.classList.add("yellow-btn")
         clearCanvasBtn.innerText = "Clear Canvas"
         clearCanvasBtn.addEventListener("click", () =>{
             easel.clear()
@@ -150,8 +160,15 @@ function displayDrawer(user_info){
     footerCanvas.append(clearCanvasBtn)
 
     //append everything to index.html
+
+    let midPageDiv = document.createElement("div")
+    midPageDiv.id = 'mid-page'
+canvasDiv.append(canvasHeaderDiv)
+    midPageDiv.classList.add('row')
+    midPageDiv.append(canvasDiv, rightMenuDiv)
+    doc.append(midPageDiv)
     
-    doc.append(canvasHeaderDiv, rightMenuDiv, canvasDiv, footerCanvas)
+    doc.append(canvasHeaderDiv, midPageDiv, footerCanvas)
 
     // displayCanvasFunc(user_info.data.attributes.role)
     // guessesDisplay()
