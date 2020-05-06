@@ -9,7 +9,7 @@ function wordCheck(e){
    
     const guess = e.currentTarget.firstElementChild.value.toLowerCase() // this is a word
     
-    const wordOfRound =  e.currentTarget.dataset.word.toLowerCase()
+    // const wordOfRound =  e.currentTarget.dataset.word.toLowerCase()
     
     const roundId = e.currentTarget.dataset.roundId
 
@@ -50,11 +50,12 @@ function wordCheck(e){
        
         fetch(`http://localhost:3000/rounds/${roundId}`)
             .then(resp => resp.json())
-            .then(word => checkGuess(word, guess))
+            .then(round => checkGuess(round, guess))
         
-     function checkGuess(word, guess){
+     function checkGuess(round, guess){
             // IF guess is right 
-            if(guess === wordOfRound){  
+            word = round.word.name.toLowerCase()
+            if(guess === word){  
                 
                 console.log("word is right")
                     const obj = {
@@ -81,8 +82,8 @@ function wordCheck(e){
                     })
 
 
-            } else if (guess != wordOfRound) {
-            
+            } else if (guess != word) {
+                // debugger
                 console.log("Word is wrong")
                 fetch(`http://localhost:3000/rounds/${roundId}/guesses`, {
                 method: "PATCH",

@@ -1,3 +1,4 @@
+let word 
 document.addEventListener("DOMContentLoaded", () => {
     // Create Game Button
     let createGameBtn = document.getElementById("create-game")

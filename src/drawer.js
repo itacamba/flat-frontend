@@ -15,7 +15,7 @@ function displayDrawer(user_info){
     const prArr =  user_info.included.filter(e => (e.type === "player_round"))
     const plArr = user_info.included.filter(e => (e.type === "player"))
     const roundInfo = user_info.included[1]
-    const word = user_info.included.slice(-1)[0].attributes
+    word = user_info.included.slice(-1)[0].attributes
     
     const playerRoundId = prArr.find(obj => obj.attributes['player_id'] == user_info.included[0].id)
     
