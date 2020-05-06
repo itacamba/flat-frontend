@@ -52,6 +52,7 @@ function wordCheck(e){
                 player_round_id: playerRoundId 
                 
             }
+            
     // we do a fetch patch to roundsController #end_round action 
    
             fetch(`http://localhost:3000/rounds/${roundId}/endround`,{
@@ -62,9 +63,10 @@ function wordCheck(e){
                 body: JSON.stringify(obj)
             }).then(resp => resp.json())
             .then(playerRoundInfo => {
-debugger
+// debugger
                 console.log(playerRoundInfo)
                 // displayDrawer(playerRoundInfo)
+                playerStatus(playerRoundInfo)
 
             })
 

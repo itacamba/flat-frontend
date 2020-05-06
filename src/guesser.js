@@ -1,7 +1,8 @@
 function displayGuesser(user_info){
-    // debugger
+    
     console.log("I hit guesser.js/ display guesser")
 
+    
     let doc = document.getElementById("content")
     while(doc.firstChild){
         doc.removeChild(doc.firstChild)
@@ -14,7 +15,8 @@ function displayGuesser(user_info){
     const plArr = user_info.included.filter(e => (e.type === "player")).concat(loggedInUser)
     const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
-
+    
+    const playerRoundId = prArr.find(obj => obj.attributes['player_id'] == user_info.included[0].id)
     // current painting id
     const paintingId = user_info.included[2].id
 
@@ -68,10 +70,25 @@ function displayGuesser(user_info){
           .getData(paintingId)
           .then(res => res.json())
           .then(data => {
-              painting.src = data.url})
+              painting.src = data.url
+            })
       }, 5000)
 
 
+
+    //   setInterval(() => {
+          
+    //     fetch("http://localhost:3000/" + `player_rounds/${playerRoundId.id}`)
+    //      .then(resp => resp.json())
+    //      .then(playerRound => {
+    //          if (playerRound.data.attributes.role === "drawer"){
+
+    //              displayDrawer(playerRound)
+    //          }
+    //      })
+        
+      
+    // }, 5000)
 
 // ***********************************************************
     

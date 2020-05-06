@@ -66,6 +66,24 @@ function joinGame(e){
     // document.querySelector("#join-username-field").reset()
 }
 
+//************************************************ */
+// checks each player's status in the game to decide which screen to display
+function playerStatus(user_info){
+    const prArr =  user_info.included.filter(e => (e.type === "player_round"))
+    debugger
+    
+    prArr.forEach(pr => {
+
+        if(pr.attributes.role == "drawer"){
+            displayDrawer(user_info)
+        }else {
+            displayGuesser(user_info)
+        }
+    })
+}
+
+//************************************************* */
+
 
 function fetchWord(wordId){
     // console.log(wordId)

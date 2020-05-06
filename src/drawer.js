@@ -1,20 +1,23 @@
 function displayDrawer(user_info){
     // debugger
+
     let doc = document.getElementById("content")
     while(doc.firstChild){
         doc.removeChild(doc.firstChild)
     }
-
-
-
+    
+    
     //div parent for word
-     //logged-in user //user_info.included[0].attributes.name
-     //word: 
+    //logged-in user //user_info.included[0].attributes.name
+    const loggedInUser = user_info.included[0]
+    
+    //word: 
     const prArr =  user_info.included.filter(e => (e.type === "player_round"))
     const plArr = user_info.included.filter(e => (e.type === "player"))
     const roundInfo = user_info.included[1]
     const word = user_info.included.slice(-1)[0].attributes
     
+    const playerRoundId = prArr.find(obj => obj.attributes['player_id'] == user_info.included[0].id)
     
      let canvasHeaderDiv = document.createElement("div")
         // div for word
@@ -54,29 +57,10 @@ function displayDrawer(user_info){
         guessesMadeDiv.append(guessesUl)
     rightMenuDiv.append(topicRoundDiv, guessesMadeDiv)
 
-            // let dropdown = document.createElement("select")
-            // let option1 = document.createElement("option")
-            // option1.innerText = "Animals"
-            // let option2 = document.createElement("option")
-            // option2.innerText = "Food"
-            // let option3 = document.createElement("option")
-            // option3.innerText = "Songs"
-            // dropdown.append(option1, option2, option3)
-            // // submit topic
-            // let submitBtn = document.createElement("button")
-            // submitBtn.innerText = "Submit"
-        // append h2, dropdown , submit to dropdownDiv
-
-
-
-
-        
+      
 
 // ***********************************************************
-    // creating an img tag for canvas
-    // let painting = document.createElement("img")
-    // painting.id = "painting"
-    // painting.alt = ""
+    
 
 
     // div for canvas
@@ -95,19 +79,36 @@ function displayDrawer(user_info){
     
     //   the sending of data to the DB
       setInterval(() => {
+          
         adapter
-        
+        // debugger
           .sendData(paintingId, easel.data())
-          fetch("http://localhost:3000/" + `paintings/${paintingId}`, {
-            method: "PATCH",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({data: easel.data()})
-          })
+        //   fetch("http://localhost:3000/" + `paintings/${paintingId}`, {
+        //     method: "PATCH",
+        //     headers: {
+        //       "Content-Type": "application/json"
+        //     },
+        //     body: JSON.stringify({data: easel.data()})
+        //   })
+          
+        
       }, 5000)
 
 
+
+    //   setInterval(() => {
+          
+    //       fetch("http://localhost:3000/" + `player_rounds/${playerRoundId.id}`)
+    //        .then(resp => resp.json())
+    //        .then(playerRound => {
+               
+    //            if (playerRound.data.attributes.role === "guesser"){
+    //                displayGuesser(playerRound)
+    //            }
+    //        })
+          
+        
+    //   }, 5000)
 
 // ***********************************************************
 
